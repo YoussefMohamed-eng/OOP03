@@ -13,6 +13,19 @@
             // Static binding (also known as early binding) occurs at compile time, where the method to be invoked is determined based on the reference type.
             // Dynamic binding (also known as late binding) occurs at runtime, where the method to be invoked is determined based on the actual object type.
             #endregion
+
+            #region Question 02
+            /// a)  What is the purpose of the sealed keyword when applied to a class?
+            // The sealed keyword is used to prevent a class from being inherited. When a class is marked as sealed, it cannot serve as a base class for any other class.
+            // This is useful when you want to restrict the inheritance hierarchy and ensure that the class's implementation remains unchanged.
+            /// b)  What is the difference between a sealed class and a sealed method?
+            // A sealed class cannot be inherited, meaning no other class can derive from it. A sealed method, on the other hand, is a method that cannot be overridden in any derived class.
+            // It can only be used in the class where it is defined or in classes that inherit from it, but those classes cannot provide their own implementation of that method.
+            /// c)  Can a sealed method be overridden? Why?
+            // No, a sealed method cannot be overridden. The purpose of sealing a method is to prevent any further overriding in derived classes. When a method is marked as sealed,
+            // it indicates that the implementation provided in the base class is final and should not be changed by any subclass.
+            // This ensures that the behavior of the method remains consistent and cannot be altered by subclasses.
+            #endregion
         }
     }
 }

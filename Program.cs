@@ -26,6 +26,327 @@
             // it indicates that the implementation provided in the base class is final and should not be changed by any subclass.
             // This ensures that the behavior of the method remains consistent and cannot be altered by subclasses.
             #endregion
+
+            #region Question 03
+            // Part 02 — Practical
+            // ==========================================
+            // Create Driver
+            // ==========================================
+
+            Driver driver =
+                new Driver(
+                    1,
+                    "Ahmed Mohamed",
+                    "01012345678");
+
+
+            // ==========================================
+            // Create Delivery Center
+            // ==========================================
+
+            DeliveryCenter center =
+                new DeliveryCenter();
+
+            center.CenterName =
+                "Smart Delivery Center";
+
+            center.Driver = driver;
+
+
+            // ==========================================
+            // Create Address 1
+            // ==========================================
+
+            DeliveryAddress address1 =
+                new DeliveryAddress(
+                    "Cairo",
+                    "Tahrir Street",
+                    15);
+
+
+            // ==========================================
+            // Standard Shipment
+            // ==========================================
+
+            StandardShipment standard =
+                new StandardShipment(
+                    "SH001",
+                    "Laptop",
+                    3,
+                    80,
+                    address1);
+
+
+            // ==========================================
+            // Create Address 2
+            // ==========================================
+
+            DeliveryAddress address2 =
+                new DeliveryAddress(
+                    "Giza",
+                    "Pyramids Street",
+                    20);
+
+
+            // ==========================================
+            // Express Shipment
+            // ==========================================
+
+            ExpressShipment express =
+                new ExpressShipment(
+                    "SH002",
+                    "Mobile Phone",
+                    2,
+                    60,
+                    address2,
+                    30);
+
+
+            // ==========================================
+            // Create Address 3
+            // ==========================================
+
+            DeliveryAddress address3 =
+                new DeliveryAddress(
+                    "Cairo",
+                    "Nasr City",
+                    10);
+
+
+            // ==========================================
+            // International Shipment
+            // ==========================================
+
+            InternationalShipment international =
+                new InternationalShipment(
+                    "SH003",
+                    "Television",
+                    8,
+                    120,
+                    address3,
+                    "Germany",
+                    100);
+
+
+            // ==========================================
+            // Add Shipments
+            // ==========================================
+
+            center.AddShipment(standard);
+            center.AddShipment(express);
+            center.AddShipment(international);
+
+
+            // ==========================================
+            // Delivery Center
+            // ==========================================
+
+            Console.WriteLine(
+                "==========================================");
+
+            Console.WriteLine(
+                "Delivery Center");
+
+            Console.WriteLine(
+                "==========================================");
+
+            Console.WriteLine(
+                $"Driver : {center.Driver.FullName}");
+
+            Console.WriteLine(
+                "------------------------------------------");
+
+
+            // ==========================================
+            // Print All Shipments
+            // ==========================================
+
+            center.PrintAllShipments();
+
+
+            // ==========================================
+            // DeliveryHelper
+            // ==========================================
+
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "==========================================");
+
+            Console.WriteLine(
+                "Printing Using DeliveryHelper...");
+
+            Console.WriteLine(
+                "==========================================");
+
+
+            DeliveryHelper.PrintShipmentDetails(
+                standard);
+
+            Console.WriteLine(
+                "Standard Shipment Printed Successfully.");
+
+
+            DeliveryHelper.PrintShipmentDetails(
+                express);
+
+            Console.WriteLine(
+                "Express Shipment Printed Successfully.");
+
+
+            DeliveryHelper.PrintShipmentDetails(
+                international);
+
+            Console.WriteLine(
+                "International Shipment Printed Successfully.");
+
+
+            // ==========================================
+            // Method Overloading
+            // ==========================================
+
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "==========================================");
+
+            Console.WriteLine(
+                "Updating Weight...");
+
+            Console.WriteLine(
+                "==========================================");
+
+            Console.WriteLine(
+                $"Original Weight : {standard.Weight} KG");
+
+
+            // First version
+            standard.UpdateWeight(5);
+
+            Console.WriteLine(
+                $"Updated Weight : {standard.Weight} KG");
+
+
+            // Second version
+            standard.UpdateWeight(
+                5,
+                0.5m);
+
+            Console.WriteLine(
+                $"Updated Weight After Packing : " +
+                $"{standard.Weight} KG");
+
+
+            // ==========================================
+            // Shipment Array - Polymorphism
+            // ==========================================
+
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "==========================================");
+
+            Console.WriteLine(
+                "Printing Using Shipment[]...");
+
+            Console.WriteLine(
+                "==========================================");
+
+
+            Shipment[] shipments =
+            {
+                standard,
+                express,
+                international
+            };
+
+
+            foreach (Shipment shipment in shipments)
+            {
+                shipment.PrintShipment();
+
+                Console.WriteLine(
+                    "------------------------------------------");
+            }
+
+
+            // ==========================================
+            // Sealed Method
+            // ==========================================
+
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "==========================================");
+
+            Console.WriteLine(
+                "Sealed Method Demonstration");
+
+            Console.WriteLine(
+                "==========================================");
+
+
+            PriorityInternationalShipment priority =
+                new PriorityInternationalShipment(
+                    "SH004",
+                    "Documents",
+                    2,
+                    100,
+                    address3,
+                    "France",
+                    50);
+
+            priority.GenerateCustomsReport();
+
+
+            // ==========================================
+            // Sealed Class
+            // ==========================================
+
+            CompletedShipment completed =
+                new CompletedShipment(
+                    "SH005",
+                    "Book",
+                    1,
+                    50,
+                    address1);
+
+            completed.PrintShipment();
+
+
+            // The following code would NOT compile:
+            //
+            // class Test : CompletedShipment
+            // {
+            // }
+            //
+            // Because CompletedShipment is sealed.
+
+
+            // The following would also NOT compile:
+            //
+            // public override void GenerateCustomsReport()
+            // {
+            // }
+            //
+            // inside a class derived from
+            // PriorityInternationalShipment,
+            // because the method is sealed.
+
+
+            Console.WriteLine();
+
+            Console.WriteLine(
+                "==========================================");
+
+            Console.WriteLine(
+                "Program Finished");
+
+            Console.WriteLine(
+                "==========================================");
         }
+
+            #endregion
+    
     }
 }
